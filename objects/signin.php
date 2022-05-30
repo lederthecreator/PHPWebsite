@@ -24,8 +24,12 @@
         if($user[0]['login'] === "admin"){
             header('Location: ../admin_panel.php');
         }
-
-       header('Location: ../profile.php');
+        if(array_key_exists('last_page', $_SESSION) && $_SESSION['last_page'] = "checkout"){
+            header('Location: ../checkout.php');
+        }
+        else{
+            header('Location: ../profile.php');
+        }
     }
     else{
         $_SESSION['message'] = "Неверный логин или пароль"; 

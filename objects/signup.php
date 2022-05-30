@@ -25,7 +25,13 @@
         $stmt->execute();
 
         $_SESSION['success'] = "Регистрация прошла успешно"; 
+
+        if(array_key_exists('last_page', $_SESSION) && $_SESSION['last_page'] = "checkout"){
+            header('Location: ../checkout.php');
+        }
+        else{
         header('Location: ../authorization.php');
+        }
     }
     else{
         $_SESSION['message'] = "Пароли не совпадают"; 

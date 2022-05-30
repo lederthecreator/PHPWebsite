@@ -78,9 +78,10 @@ if(count($_SESSION['cart'])>0 && array_key_exists('user', $_SESSION)){
 else{
     echo "<div class='col-md-12'>";
         echo "<div class='alert alert-danger'>";
-            echo "Не выполнен вход в аккаунт или в корзине нет товаров!";
+            echo "Не выполнен вход в аккаунт или в корзине нет товаров! <a href='authorization.php'>Войти</a> или <a href='registration.php'>Зарегистрируйтесь</a>";
         echo "</div>";
     echo "</div>";
+    $_SESSION['last_page'] = "checkout";
 }
  
 include 'layout_footer.php';
