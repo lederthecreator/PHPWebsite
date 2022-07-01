@@ -10,8 +10,9 @@
     $stmt = $db->prepare("SELECT * FROM users WHERE login = '$login' AND password = '$password'");
     $stmt->execute();
     $count = $stmt->rowCount();
+    
     if($count > 0){
-       $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
        
        $_SESSION['user'] = [
         "id" => $user[0]['id'],
@@ -26,6 +27,7 @@
         }
         if(array_key_exists('last_page', $_SESSION) && $_SESSION['last_page'] = "checkout"){
             header('Location: ../checkout.php');
+            unset($_SESSION['last_page']);
         }
         else{
             header('Location: ../profile.php');
@@ -40,4 +42,5 @@
 <pre>
     <?= print_r($user) ?>
     <?= print_r($_SESSION['user']) ?>
+    <?= print_r($_SESSION['last_page']) ?>
 </pre>

@@ -53,7 +53,7 @@ require 'objects/product_image.php';
       <?php 
         $database = new Database();
         $db = $database->getConnection();
-        $stmt = $db->prepare("SELECT * FROM users WHERE id =" . $_SESSION['user']['id']);
+        $stmt = $db->prepare("SELECT * FROM `users` WHERE `id` =".$_SESSION['user']['id']);
         $stmt->execute();
         $count = $stmt->rowCount();
         $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -73,7 +73,8 @@ require 'objects/product_image.php';
             echo "<div class='col-sm-4'>";
               echo "<div class='panel'>";
                 echo "<div class='panel-body'>";
-                  echo "<h5 class='panel-title'>" . $product->name . "</h5>";
+                  echo "<h5 class='panel-title'><strong>" . $product->name . "</strong></h5>";
+                  echo "<div class='row'><div class='col-sm-4'></div></div>";
                   echo "<p class='panel-text'>" . htmlspecialchars_decode(htmlspecialchars_decode($product->description)) . "</p>";
                   echo "<a class='btn btn-primary' href='uploads/files/" . $links[$i + $j] . ".rar'> Скачать </a>";
                 echo "</div>";
@@ -84,7 +85,6 @@ require 'objects/product_image.php';
         }
       ?>
 </section>
-
 <?php
 include 'layout_footer.php';
 ?>

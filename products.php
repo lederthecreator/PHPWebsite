@@ -22,6 +22,8 @@ if(!is_numeric($page)){
 if($page < 0) $page = 1;
 $records_per_page = 3; 
 $from_record_num = ($records_per_page * $page) - $records_per_page; 
+//$total_pages = ceil($total_rows / $records_per_page);
+//if($page > $total_pages) $page = $total_pages;
 
 $page_title = "Товары";
 
@@ -53,6 +55,8 @@ $num =  $stmt->rowCount();
 if($num > 0){
     $page_url = "products.php?";
     $total_rows = $product->count();
+    $total_pages = ceil($total_rows / $records_per_page);
+    if($page > $total_pages) $page = $total_pages;
 
     include_once "read_products_template.php";
 }else{

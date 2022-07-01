@@ -1,17 +1,13 @@
 <?php
-// start session
 session_start();
  
-// include classes
 include_once "config/database.php";
 include_once "objects/product.php";
 include_once "objects/product_image.php";
  
-// get database connection
 $database = new Database();
 $db = $database->getConnection();
  
-// initialize objects
 $product = new Product($db);
 $product_image = new ProductImage($db);
  
@@ -30,6 +26,14 @@ $stmt_product_image = $product_image->readByProductId();
 $num_product_image = $stmt_product_image->rowCount();
 
 include_once 'layout_header.php';
+
+$action = isset($_GET['action']) ? $_GET['action'] : "";
+if($action=='purchased'){
+    echo "</div>";
+    echo "<div class='alert alert-info'>";
+        echo "Вы уже приобрели этот товар. Перейти в <a href='profile.php'>профиль.</a>";
+    echo "</div>";
+}
  
 echo "<div class='col-md-1'>";
     if($num_product_image>0){
